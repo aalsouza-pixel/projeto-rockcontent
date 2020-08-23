@@ -1,0 +1,13 @@
+php:
+  build: .
+  ports:
+   - "8000:8000"
+   - "443:443"
+  volumes:
+   - ./www:/var/www/html
+
+    healthcheck:
+      test: curl --fail -s http://localhost:8000/ || exit 1
+      interval: 5s
+      timeout: 1s
+      retries: 2
